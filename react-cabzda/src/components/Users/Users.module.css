@@ -1,0 +1,21 @@
+.padre {
+    padding: 10px;
+
+}
+
+.data {
+    display: inline-block;
+    height: 100px;
+    width: 400px;
+    border-color: black;
+}
+
+img {
+    width: 100px;
+}
+
+
+
+.visible {
+    display: none;
+}

@@ -1,0 +1,15 @@
+.bar {
+    display: grid; 
+    grid-template-rows: 300px auto; 
+    grid-template-areas:
+    'g'
+    'f' ;
+  }
+
+  .item a { color: azure;
+    text-decoration: none;
+  }
+
+  a.active  {
+      color: rgb(12, 12, 11);
+  }

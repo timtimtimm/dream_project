@@ -1,0 +1,11 @@
+.circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: gold;
+    display: inline-block;
+}
+.item {
+    display: inline-block;
+    
+}

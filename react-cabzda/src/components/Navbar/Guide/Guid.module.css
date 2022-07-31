@@ -1,0 +1,11 @@
+.guid {
+  grid-area: g;
+}
+
+  .item a { color: azure;
+    text-decoration: none;
+  }
+
+  a.active  {
+      color: rgb(12, 12, 11);
+  }

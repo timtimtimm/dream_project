@@ -1,0 +1,9 @@
+.frends {
+    grid-area: f;
+    color: white;
+  }
+
+  .frends .area {
+    display: grid;
+    grid-template-columns: 33% 33% auto;
+  }

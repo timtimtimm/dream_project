@@ -1,0 +1,18 @@
+.header {
+    grid-area: h;
+    align-items: start;
+    background-color: blue;
+  }
+  
+  
+  .header img {
+    width: 60px;
+  }
+  
+  .login {
+float: right;
+  }
+
+  .login a {
+    color: white;
+  }
