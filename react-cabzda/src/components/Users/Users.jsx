@@ -6,12 +6,14 @@ import User from './User/User';
 
 let Users = (props) => {
 
+   // totalItemsCount, pageSize, onChangePage, currentPage, portionSize = 50 
     return <>
         <div className={props.preloader ? '' : s.visible}>
             <Preloader />
         </div>
         <div>
-            <Paginator {...props} />
+            <Paginator  totalItemsCount = {props.totalUsersCount} pageSize = {props.pageSize} 
+            onChangePage = {props.onChangePage} currentPage = {props.currentPage} portionSize = {40} />
         </div>
         <div className = {s.padre}>
             {
