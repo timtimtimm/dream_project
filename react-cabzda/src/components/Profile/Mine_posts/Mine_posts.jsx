@@ -12,7 +12,7 @@ const Mine_posts = React.memo((props) => {
     
   return (
     <div className={s.minePosts}>
-      {props.profileUserData ? <img src={props.profileUserData.photos.small} /> : userPhoto}
+       <img src={props.profileUserData.photos.small || userPhoto} /> 
       <Profile_status_hooc status={props.status} updateStatusUser={props.updateStatusUser} />
       <h2>Main posts</h2>
       <New_post onAddPost={props.onAddPost} />

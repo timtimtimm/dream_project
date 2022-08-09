@@ -10,10 +10,11 @@ import News from './components/News/News';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Logine/Logine';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
 import { getSuccessedInitialise } from './redax/app-reduser ';
 import Preloader from './support/preloader/Preloader';
+//const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 
 class App extends React.Component {
 
@@ -37,7 +38,7 @@ class App extends React.Component {
               <Route path='/Profile' element={<Profile />} />
               <Route path='/Profile/:id' element={<Profile />} />
               <Route path='/News' element={<News />} />
-              <Route path='/Dialogs' element={<DialogsContainer />} />
+              <Route path='/Dialogs' element={<DialogsContainer /> } />
               <Route path='/Users' element={<UsersContainer />} />
               <Route path='/Music' element={<Music />} />
               <Route path='/Setting' element={<Setting />} />
