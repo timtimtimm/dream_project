@@ -6,16 +6,27 @@ import { authNavigate } from '../../Hoc/AuthNavigate';
 import { compose } from 'redux'
 
 class Mine_postsContainer extends React.Component {
-  componentDidMount() {
+
+  getProfile() {
     let userId = this.props.id;
     if (!userId) {
       userId = this.props.myId;
-      /* if(!userId){
-         this.props.history.push('/logine')
-       }*/
+      if (!userId) {
+        this.props.history.push('/logine')
+      }
     }
     this.props.getProfileUser(userId);
     this.props.getStatusUser(userId);
+  }
+
+  componentDidMount() {
+    this.getProfile();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.id !== prevProps.id) {
+      this.getProfile();
+    }
   }
   render() {
     return <Mine_posts

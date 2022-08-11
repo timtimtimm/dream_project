@@ -6,7 +6,6 @@ import User from './User/User';
 
 let Users = (props) => {
 
-   // totalItemsCount, pageSize, onChangePage, currentPage, portionSize = 50 
     return <>
         <div className={props.preloader ? '' : s.visible}>
             <Preloader />
