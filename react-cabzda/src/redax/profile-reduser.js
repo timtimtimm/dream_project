@@ -3,10 +3,12 @@ import { profileApi } from '../api/api';
 const ADD_POST = 'profile/ADD-POST';
 const PROFILE_USER_DATA = 'profile/PROFILE_USER_DATA';
 const SET_STATUS = 'profile/SET_STATUS';
+const SET_PHOTO = 'profile/SET_PHOTO';
 
 export const onAddPost = (data) => ({ type: ADD_POST, data });
 export const onProfileUserData = (profileUserData) => ({ type: PROFILE_USER_DATA, profileUserData });
 export const onSetStatus = (status) => ({ type: SET_STATUS, status });
+export const onSetPhoto = (photo) => ({ type: SET_STATUS, photo });
 
 export const getProfileUser = (userId) =>  async (dispatch) => {
     let response = await profileApi.getProfileUser(userId);
@@ -22,6 +24,13 @@ export const updateStatusUser = (status) => async (dispatch) => {
     let response = await profileApi.updateStatus(status);
     if (response.data.resultCode === 0) {
       dispatch(onSetStatus(status));
+    }
+  }
+
+  export const sendPhoto = (photo) => async (dispatch) => {
+    let response = await profileApi.setPhoto(photo);
+    if (response.data.resultCode === 0) {
+      dispatch(onSetPhoto(response.data.data.photos));
     }
   }
 
@@ -53,6 +62,13 @@ const profileReduser = (state = initialState, action) => {
       return {
         ...state,
         status: action.status
+      }
+      case SET_PHOTO:
+        return {
+          ...state,
+          profileUserData: {...state.profileUserData, photos: {
+            ...state.profileUserData.photos, small:action.photo}
+        }
       }
     default:
       return state;

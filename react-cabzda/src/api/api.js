@@ -74,6 +74,19 @@ export const profileApi = {
             return response;
         }
         );
+    },
+
+    setPhoto(photo) {
+        let formData = new FormData();
+        formData.append('image', photo);
+        return instanse.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+        }).then(response => {
+            return response;
+        }
+        );
     }
 }
 
