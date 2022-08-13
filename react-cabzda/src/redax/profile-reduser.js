@@ -36,7 +36,6 @@ let initialState = {
 };
 
 const profileReduser = (state = initialState, action) => {
-
   switch (action.type) {
     case ADD_POST:
       let post = action.data.message;

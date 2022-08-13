@@ -8,11 +8,18 @@ import userPhoto from '../../../axios/images/images.png';
 const Mine_posts = React.memo((props) => {
   let posts = props.profile.postsArr.map(p => <Post key={p.id}
     message={p.message} count={p.count} />);
+    let foto;
+    if( props.profileUserData && props.profileUserData.photos.small){
+foto = props.profileUserData.photos.small;
+    }
+    else{
+      foto =userPhoto;
+    }
   return (
   
     <div className={s.minePosts}>
 
-<img src={ props.profileUserData.photos.small ||  userPhoto } alt= {''} /> 
+<img src={ foto } alt= {''} /> 
 
       <Profile_status_hooc status={props.status} updateStatusUser={props.updateStatusUser} />
       <h2>Main posts</h2>
