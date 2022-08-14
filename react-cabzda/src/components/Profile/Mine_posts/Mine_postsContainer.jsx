@@ -4,7 +4,6 @@ import { onAddPost, getProfileUser, getStatusUser, updateStatusUser, sendPhoto }
 import { connect } from 'react-redux';
 import { authNavigate } from '../../Hoc/AuthNavigate';
 import { compose } from 'redux'
-import { getSelectedUsers } from '../../../redax/users-selectors';
 
 class Mine_postsContainer extends React.Component {
 
@@ -31,7 +30,7 @@ class Mine_postsContainer extends React.Component {
   }
   render() {
     return <Mine_posts
-      profile={this.props.profile}  {...this.props} isOwner = {!this.props.id}
+      profile={this.props.profile}  {...this.props} isOwner={!this.props.id}
     />
   }
 }

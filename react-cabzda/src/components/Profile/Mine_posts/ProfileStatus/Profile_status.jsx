@@ -1,8 +1,6 @@
 import React from 'react';
 //import s from './Mine_posts.module.css';
 
-
-
 class Profile_status extends React.Component {
 
   state = {

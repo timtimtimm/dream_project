@@ -40,7 +40,7 @@ let initialState = {
     { message: 'Mi first post', count: 20, id: 2 },
     { message: 'Mi last post', count: 25, id: 3 }
   ],
-  profileUserData: null,
+  profileUserData: '',
   status: ''
 };
 
