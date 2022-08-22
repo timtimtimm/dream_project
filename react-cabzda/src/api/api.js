@@ -40,8 +40,8 @@ export const authApi = {
         }
         );
     },
-    login(email, password, rememberMe) {
-        return instanse.post('auth/login', { email, password, rememberMe }).then(response => {
+    login(email, password, rememberMe, captcha) {
+        return instanse.post('auth/login', { email, password, rememberMe, captcha }).then(response => {
             return response.data;
         }
         );
@@ -54,6 +54,16 @@ export const authApi = {
     },
 
 }
+
+export const securytiApi = {
+   getCaptchaApi() {
+        return instanse.get('security/get-captcha-url').then(response => {
+            return response.data;
+        }
+        );
+    },
+}
+
 export const profileApi = {
     getProfileUser(userId) {
         return instanse.get(`profile/${userId}`).then(response => {
