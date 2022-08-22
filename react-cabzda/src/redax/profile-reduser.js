@@ -1,14 +1,17 @@
 import { profileApi } from '../api/api';
+import { stopSubmit } from 'redux-form';
 
 const ADD_POST = 'profile/ADD-POST';
 const PROFILE_USER_DATA = 'profile/PROFILE_USER_DATA';
 const SET_STATUS = 'profile/SET_STATUS';
 const SET_PHOTO = 'profile/SET_PHOTO';
+const SET_EDIT_FORM = 'profile/SET_EDIT_FORM';
 
 export const onAddPost = (data) => ({ type: ADD_POST, data });
 export const onProfileUserData = (profileUserData) => ({ type: PROFILE_USER_DATA, profileUserData });
 export const onSetStatus = (status) => ({ type: SET_STATUS, status });
 export const onSetPhoto = (photo) => ({ type: SET_STATUS, photo });
+export const onSetEditForm = (flag) => ({ type: SET_EDIT_FORM, flag });
 
 export const getProfileUser = (userId) =>  async (dispatch) => {
     let response = await profileApi.getProfileUser(userId);
@@ -34,6 +37,18 @@ export const updateStatusUser = (status) => async (dispatch) => {
     }
   }
 
+  export const setNewUserData = (formData) => async (dispatch, getState) => {
+    const userId = getState().auth.userId;
+    let response = await profileApi.setUserData(formData);
+    if (response.data.resultCode === 0) {
+      dispatch(getProfileUser(userId));
+      dispatch(onSetEditForm(false));
+    } else {
+      let messages = response.data.messages.length > 0 ? response.data.messages[0] : 'Some error'
+      dispatch(stopSubmit('profileUserDataForm', { _error: messages }))
+    }
+  }
+  
 let initialState = {
   postsArr: [
     { message: 'Helo mine world!', count: 15, id: 1 },
@@ -41,7 +56,8 @@ let initialState = {
     { message: 'Mi last post', count: 25, id: 3 }
   ],
   profileUserData: '',
-  status: ''
+  status: '',
+  editForm: false
 };
 
 const profileReduser = (state = initialState, action) => {
@@ -57,6 +73,11 @@ const profileReduser = (state = initialState, action) => {
       return {
         ...state,
         profileUserData: action.profileUserData
+      }
+      case SET_EDIT_FORM:
+      return {
+        ...state,
+        editForm: action.flag
       }
     case SET_STATUS:
       return {

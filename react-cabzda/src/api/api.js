@@ -87,7 +87,13 @@ export const profileApi = {
             return response;
         }
         );
-    }
+    },
+    setUserData(data) {
+        return instanse.put(`profile`, data ).then(response => {
+            return response;
+        }
+        );
+    },
 }
 
 

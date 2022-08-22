@@ -7,7 +7,7 @@ import userPhoto from '../../../axios/images/images.png';
 import ProfileUserData from './ProfileUserData/ProfileUserata';
 import ProfileUserDataForm from './ProfileUserData/ProfileUserataForm';
 
-const Mine_posts = React.memo((props) => {
+const Mine_posts = (props) => {
   let posts = props.profile.postsArr.map(p => <Post key={p.id}
     message={p.message} count={p.count} />);
 
@@ -25,13 +25,13 @@ const Mine_posts = React.memo((props) => {
     }
   }
 
-  let flag = true;
   return (
     <div className={s.minePosts}>
       <img src={foto} alt={''} />
       {props.isOwner && <input type={'file'} onChange={onChangeFoto} />} <br/>
-      {props.isOwner && <button>editData </button>} <br/>
-      {flag? <ProfileUserData {...props} /> : <ProfileUserDataForm />}
+      {props.isOwner && <button onClick={() => props.onSetEditForm(true)} >editData </button>} <br/>
+      {!props.editForm? <ProfileUserData {...props} /> : <ProfileUserDataForm setNewUserData = {props.setNewUserData} 
+      profileUserData = {props.profileUserData}  />}
       <Profile_status_hooc status={props.status} updateStatusUser={props.updateStatusUser} />
       <h2>Main posts</h2>
       <New_post onAddPost={props.onAddPost} />
@@ -39,6 +39,6 @@ const Mine_posts = React.memo((props) => {
     </div>
   );
 }
-);
+
 
 export default Mine_posts;

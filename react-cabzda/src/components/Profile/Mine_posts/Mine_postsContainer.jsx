@@ -1,6 +1,7 @@
 import React from 'react';
 import Mine_posts from './Mine_posts';
-import { onAddPost, getProfileUser, getStatusUser, updateStatusUser, sendPhoto } from './../../../redax/profile-reduser';
+import { onAddPost, getProfileUser, getStatusUser, updateStatusUser, 
+  sendPhoto, setNewUserData, onSetEditForm } from './../../../redax/profile-reduser';
 import { connect } from 'react-redux';
 import { authNavigate } from '../../Hoc/AuthNavigate';
 import { compose } from 'redux'
@@ -41,10 +42,11 @@ let mapStateToProps = (state) => {
     profileUserData: state.profile.profileUserData,
     isAuth: state.auth.isAuth,
     status: state.profile.status,
-    myId: state.auth.userId
+    myId: state.auth.userId,
+    editForm: state.profile.editForm
   }
 }
 
 export default compose(connect(mapStateToProps,
-  { onAddPost, getProfileUser, getStatusUser, updateStatusUser, sendPhoto }
+  { onAddPost, getProfileUser, getStatusUser, updateStatusUser, sendPhoto, setNewUserData, onSetEditForm }
 ), authNavigate)(Mine_postsContainer);
